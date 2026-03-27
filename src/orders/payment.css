@@ -1,0 +1,744 @@
+/* ============================
+   PANTALLA — viewport fijo sin scroll global
+   ============================ */
+
+.payment-screen {
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: radial-gradient(circle at top left, #e0edff 0%, #f5f7fb 40%, #f0f4f8 100%);
+  overflow: hidden;
+}
+
+/* ============================
+   HEADER FIJO
+   ============================ */
+
+.payment-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px 10px;
+  padding-top: max(14px, env(safe-area-inset-top));
+  flex-shrink: 0;
+}
+
+.payment-back-btn {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  border-radius: 12px;
+  border: none;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.15s ease, background 0.15s ease;
+  flex-shrink: 0;
+}
+
+.payment-back-btn:active {
+  transform: scale(0.91);
+  background: #f3f4f6;
+}
+
+.payment-header-text { flex: 1; min-width: 0; }
+
+.payment-header-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--brand-blue);
+  letter-spacing: -0.03em;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.payment-header-sub {
+  font-size: 0.72rem;
+  color: #94a3b8;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* Indicador de pasos */
+.payment-steps {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.payment-step-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #e2e8f0;
+  transition: background 0.25s ease, width 0.25s ease, border-radius 0.25s ease;
+}
+
+.payment-step-dot.active {
+  background: var(--brand-blue, #2563eb);
+  width: 20px;
+  border-radius: 4px;
+}
+
+.payment-step-dot.done { background: #86efac; }
+
+/* ============================
+   ÁREA DESLIZANTE
+   ============================ */
+
+.payment-slide-area {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* ============================
+   PASO
+   ============================ */
+
+.payment-step-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0 16px;
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
+  gap: 12px;
+  overflow: hidden;
+}
+
+/* ============================
+   CARD
+   ============================ */
+
+.payment-card {
+  background: rgba(255, 255, 255, 0.97);
+  border-radius: 22px;
+  padding: 16px;
+  box-shadow: 0 4px 24px rgba(37,99,235,0.10), 0 1px 4px rgba(0,0,0,0.06);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+}
+
+.payment-card::-webkit-scrollbar { display: none; }
+
+/* ============================
+   SECCIONES
+   ============================ */
+
+.payment-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.payment-section-title {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 2px;
+}
+
+/* ============================
+   MONTO HERO
+   ============================ */
+
+.payment-amount-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 0 4px;
+  gap: 2px;
+}
+
+.payment-amount-label {
+  font-size: 0.72rem;
+  color: #94a3b8;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.payment-amount-usd {
+  font-size: clamp(2rem, 10vw, 2.6rem);
+  font-weight: 900;
+  color: var(--brand-blue, #2563eb);
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+}
+
+.payment-amount-bs {
+  font-size: 0.88rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+/* ============================
+   FILAS DE DATOS
+   ============================ */
+
+.payment-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.88rem;
+  padding: 3px 0;
+  gap: 8px;
+}
+
+.payment-row span,
+.payment-row-label {
+  color: #6b7280;
+  flex-shrink: 0;
+  font-size: 0.88rem;
+}
+
+.payment-row strong {
+  color: #1f2937;
+  text-align: right;
+  word-break: break-all;
+}
+
+.payment-row-right {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-shrink: 0;
+}
+
+/* ── Copiables ── */
+.payment-row.copyable {
+  cursor: pointer;
+  padding: 11px 12px;
+  border-radius: 13px;
+  border: 1.5px solid transparent;
+  transition: background 0.14s ease, border-color 0.14s ease;
+  -webkit-tap-highlight-color: transparent;
+  min-height: 48px;       /* área táctil generosa en móvil */
+  margin: 0 -4px;
+}
+
+@media (hover: hover) {
+  .payment-row.copyable:hover {
+    background: #f3f4f6;
+    border-color: #e5e7eb;
+  }
+}
+
+.payment-row.copyable:active {
+  background: #e5e7eb;
+}
+
+/* Estado copiado — fondo verde muy suave */
+.payment-row--copied {
+  background: #f0fdf4 !important;
+  border-color: #bbf7d0 !important;
+}
+
+/* Ícono copiar */
+.copy-icon {
+  opacity: 0.3;
+  transition: opacity 0.14s ease;
+  flex-shrink: 0;
+}
+
+.payment-row.copyable:active .copy-icon,
+.payment-row.copyable:hover .copy-icon {
+  opacity: 0.65;
+}
+
+/* Badge "Copiado" */
+.payment-copied-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #16a34a;
+  white-space: nowrap;
+}
+
+/* ============================
+   BOTÓN COPIAR TODO
+   ============================ */
+
+.payment-copy-all {
+  width: 100%;
+  padding: 13px 16px;
+  border-radius: 14px;
+  border: 1.5px solid #bfdbfe;
+  background: #eff6ff;
+  color: #2563eb;
+  font-size: 0.88rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.12s ease;
+  min-height: 48px;
+}
+
+.payment-copy-all-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+@media (hover: hover) {
+  .payment-copy-all:hover {
+    background: #dbeafe;
+    border-color: #93c5fd;
+  }
+}
+
+.payment-copy-all:active { transform: scale(0.98); }
+
+/* Estado copiado todo */
+.payment-copy-all--done {
+  background: #f0fdf4;
+  border-color: #86efac;
+  color: #15803d;
+}
+
+/* ============================
+   CHIP DE AYUDA
+   ============================ */
+
+.payment-help-chip {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  padding: 8px 12px;
+  border-radius: 11px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  font-size: 0.72rem;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+/* ============================
+   DIVIDER
+   ============================ */
+
+.payment-divider {
+  height: 1px;
+  background: #e5e7eb;
+  margin: 2px 0;
+}
+
+/* ============================
+   FACTURA
+   ============================ */
+
+.invoice-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.invoice-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.invoice-item:last-child { border-bottom: none; }
+
+.invoice-left {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  min-width: 0;
+}
+
+.invoice-name {
+  font-size: 0.87rem;
+  font-weight: 500;
+  color: #1f2937;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.invoice-qty {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  flex-shrink: 0;
+  background: #f3f4f6;
+  border-radius: 5px;
+  padding: 1px 5px;
+}
+
+.invoice-price {
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: #1f2937;
+  flex-shrink: 0;
+}
+
+.invoice-delivery {
+  background: #f0f9ff;
+  border-radius: 9px;
+  padding: 7px 9px !important;
+  border-bottom: none !important;
+  margin: 2px 0;
+}
+
+.invoice-delivery-icon { color: #3b82f6; flex-shrink: 0; }
+.invoice-delivery-price { color: #2563eb !important; }
+
+.invoice-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1.5px solid #e5e7eb;
+  padding-top: 10px;
+  margin-top: 4px;
+}
+
+.invoice-total > span {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.invoice-total-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1px;
+}
+
+.invoice-total-usd {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: var(--brand-blue, #2563eb);
+  letter-spacing: -0.02em;
+}
+
+.invoice-total-bs {
+  font-size: 0.72rem;
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+/* Dirección */
+.payment-delivery-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 9px 12px;
+  background: #f8fafc;
+  border-radius: 11px;
+  border: 1px solid #e2e8f0;
+}
+
+.payment-delivery-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.payment-delivery-addr {
+  font-size: 0.83rem;
+  color: #374151;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* ============================
+   UPLOAD COMPROBANTE
+   ============================ */
+
+.payment-file-input { display: none; }
+
+.payment-upload-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 24px 16px;
+  border: 2px dashed #bfdbfe;
+  border-radius: 16px;
+  background: #f0f9ff;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+  text-align: center;
+}
+
+.payment-upload-zone:active {
+  border-color: var(--brand-blue, #2563eb);
+  background: #dbeafe;
+}
+
+@media (hover: hover) {
+  .payment-upload-zone:hover {
+    border-color: #60a5fa;
+    background: #eff6ff;
+  }
+}
+
+.payment-upload-icon { color: #60a5fa; display: flex; }
+.payment-upload-text { font-size: 0.88rem; font-weight: 600; color: #2563eb; }
+.payment-upload-hint { font-size: 0.72rem; color: #94a3b8; }
+
+.payment-preview-wrap {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1.5px solid #bfdbfe;
+  max-height: 180px;
+}
+
+.payment-preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  max-height: 180px;
+}
+
+.payment-preview-remove {
+  position: absolute;
+  top: 8px; right: 8px;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0,0,0,0.55);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.14s ease;
+}
+
+.payment-preview-remove:active { transform: scale(0.88); }
+
+/* ============================
+   INPUT 4 DÍGITOS
+   ============================ */
+
+.payment-digits-input {
+  width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1.5px solid #e5e7eb;
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: 0.35em;
+  text-align: center;
+  background: #f9fafb;
+  color: #1f2937;
+  font-family: inherit;
+  transition: border 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  -webkit-appearance: none;
+  box-sizing: border-box;
+  min-height: 58px;
+}
+
+.payment-digits-input:focus {
+  outline: none;
+  border-color: var(--brand-blue, #2563eb);
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.11);
+  background: #ffffff;
+}
+
+.payment-digits-input.input-error {
+  border-color: #f87171;
+  box-shadow: 0 0 0 3px rgba(239,68,68,0.10);
+}
+
+/* ============================
+   ERRORES
+   ============================ */
+
+.payment-field-error {
+  font-size: 0.74rem;
+  color: #dc2626;
+  display: block;
+  overflow: hidden;
+}
+
+.payment-reference-hint {
+  font-size: 0.72rem;
+  color: #9ca3af;
+  line-height: 1.4;
+}
+
+/* ============================
+   FOOTER — BOTÓN
+   ============================ */
+
+.payment-footer {
+  flex-shrink: 0;
+  padding-top: 4px;
+}
+
+.pay-button {
+  width: 100%;
+  height: 52px;
+  border-radius: 16px;
+  border: none;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: clamp(0.88rem, 4vw, 1rem);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+  letter-spacing: -0.01em;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.pay-button--blue {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  box-shadow: 0 10px 28px rgba(37,99,235,0.38);
+}
+
+.pay-button--green {
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+  box-shadow: 0 10px 28px rgba(22,163,74,0.38);
+}
+
+@media (hover: hover) {
+  .pay-button--blue:hover  { transform: translateY(-1px); filter: brightness(1.06); }
+  .pay-button--green:hover { transform: translateY(-1px); filter: brightness(1.06); }
+}
+
+.pay-button:active:not(:disabled) { transform: scale(0.97); filter: brightness(0.96); }
+.pay-button:disabled { cursor: not-allowed; opacity: 0.75; }
+
+.pay-button--loading {
+  background: linear-gradient(135deg, #15803d, #16a34a);
+  box-shadow: none;
+}
+
+.spinner--white {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+/* ============================
+   ESTADO VACÍO
+   ============================ */
+
+.payment-container {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at top left, #e0edff 0%, #f5f7fb 40%, #f0f4f8 100%);
+  padding: 24px 16px;
+}
+
+.payment-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+  max-width: 300px;
+}
+
+.payment-empty-icon  { font-size: 2.8rem; opacity: 0.4; }
+.payment-empty-title { font-size: 1.1rem; font-weight: 700; color: #1f2937; margin: 0; }
+.payment-empty-text  { font-size: 0.86rem; color: #9ca3af; line-height: 1.5; margin: 0; }
+
+.payment-empty-btn {
+  padding: 12px 24px;
+  background: var(--brand-blue, #2563eb);
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-size: 0.93rem;
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.15s ease;
+}
+
+.payment-empty-btn:active { transform: scale(0.96); }
+
+/* ============================
+   RESPONSIVE — 375px
+   ============================ */
+
+@media (max-width: 375px) {
+  .payment-header { padding: 11px 14px 8px; }
+  .payment-step-content {
+    padding: 0 12px;
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
+  }
+  .payment-card { padding: 14px; border-radius: 18px; }
+  .pay-button { height: 48px; font-size: 0.9rem; border-radius: 14px; }
+  .payment-digits-input { font-size: 1.35rem; min-height: 52px; }
+  .payment-copy-all { padding: 11px 14px; font-size: 0.84rem; }
+}
+
+/* ============================
+   RESPONSIVE — 320px (iPhone SE 1G)
+   ============================ */
+
+@media (max-width: 320px) {
+  .payment-header-title { font-size: 0.97rem; }
+  .payment-card { padding: 12px; border-radius: 15px; gap: 9px; }
+  .payment-row { font-size: 0.8rem; }
+  .payment-row-label { font-size: 0.8rem; }
+  .invoice-name { font-size: 0.8rem; }
+  .invoice-total-usd { font-size: 1rem; }
+  .pay-button { height: 44px; font-size: 0.83rem; }
+  .payment-amount-usd { font-size: 1.8rem; }
+  .payment-digits-input { font-size: 1.2rem; min-height: 48px; }
+  .payment-upload-zone { padding: 18px 12px; }
+  .payment-copy-all { padding: 10px 12px; font-size: 0.8rem; min-height: 44px; }
+}
+
+/* ============================
+   ACCESIBILIDAD
+   ============================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .pay-button,
+  .payment-back-btn,
+  .payment-copy-all,
+  .payment-step-dot {
+    transition: none;
+  }
+}

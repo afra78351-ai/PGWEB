@@ -1,0 +1,45 @@
+/* src/index.css */
+
+:root {
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  /* Forzamos colores claros */
+  color-scheme: light;
+  color: #213547;
+  background-color: #f0f4f8; /* El gris muy clarito de tu diseño original */
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-content: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: #f0f4f8; /* Aseguramos el fondo aquí también */
+}
+
+/* Reset básico para que los estilos de tus componentes no peleen con el navegador */
+* {
+  box-sizing: border-box;
+}
+
+button {
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+input, select {
+  background-color: white !important;
+  color: #333 !important;
+}

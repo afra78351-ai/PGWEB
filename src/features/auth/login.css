@@ -1,0 +1,393 @@
+/* ============================
+   WRAPPER PRINCIPAL
+   ============================ */
+
+.login-wrapper {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f5f7;
+  position: relative;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* ============================
+   GRADIENTE DE FONDO
+   ============================ */
+
+.bg-gradient {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.15) 0%, rgba(245, 245, 247, 0) 70%);
+  top: -200px;
+  right: -200px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ============================
+   CARD PRINCIPAL
+   ============================ */
+
+.glass-login-card {
+  z-index: 1;
+  width: 380px;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 30px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.07);
+  text-align: center;
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .glass-login-card {
+    background: rgba(255, 255, 255, 0.97);
+  }
+}
+
+/* ============================
+   HEADER — ICONO Y TÍTULOS
+   ============================ */
+
+.icon-circle {
+  width: 70px;
+  height: 70px;
+  background: white;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.12);
+}
+
+.login-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #1d1d1f;
+  margin: 0;
+}
+
+.login-subtitle {
+  color: #86868b;
+  margin: 8px 0 24px;
+  font-size: 15px;
+}
+
+/* ============================
+   INPUTS
+   ============================ */
+
+.input-field {
+  background: #f2f2f7;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  margin-bottom: 14px;
+  border: 1.5px solid transparent;
+  transition: border 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.input-field:focus-within {
+  background: white;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+.input-field .icon {
+  color: #86868b;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.input-native {
+  border: none;
+  background: transparent !important;
+  background-color: transparent !important;
+  outline: none;
+  width: 100%;
+  font-size: 16px;
+  color: #1d1d1f;
+  -webkit-appearance: none;
+}
+
+.input-native::placeholder {
+  color: #b0b0b8;
+}
+
+.input-native:-webkit-autofill,
+.input-native:-webkit-autofill:hover,
+.input-native:-webkit-autofill:focus,
+.input-native:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0px 1000px #f2f2f7 inset !important;
+  -webkit-text-fill-color: #1d1d1f !important;
+}
+
+/* ============================
+   OLVIDASTE CONTRASEÑA
+   ============================ */
+
+.forgot-pass {
+  text-align: right;
+  margin: -4px 0 20px;
+}
+
+.forgot-pass span {
+  color: #2563eb;
+  font-size: 13px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+.forgot-pass span:hover {
+  opacity: 0.75;
+}
+
+/* ============================
+   BOTÓN PRINCIPAL — ENTRAR
+   ============================ */
+
+.login-button {
+  width: 100%;
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 16px;
+  border-radius: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.login-button:hover {
+  background: #1d4ed8;
+}
+
+/* ============================
+   SEPARADOR
+   ============================ */
+
+.separator {
+  margin: 24px 0;
+  display: flex;
+  align-items: center;
+  color: #86868b;
+  font-size: 13px;
+}
+
+.separator::before,
+.separator::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.separator span {
+  padding: 0 12px;
+}
+
+/* ============================
+   BOTONES SOCIALES
+   ============================ */
+
+.social-login {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+}
+
+.social-btn:hover {
+  opacity: 0.85;
+}
+
+.social-btn.apple {
+  background: #1e3a8a;
+  color: white;
+}
+
+.social-btn.google {
+  background: white;
+  color: #1d1d1f;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+/* ============================
+   FOOTER — REGISTRO
+   ============================ */
+
+.footer-links {
+  margin-top: 24px;
+  font-size: 14px;
+  color: #86868b;
+}
+
+.register-link {
+  color: #2563eb;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: 4px;
+  transition: opacity 0.2s;
+}
+
+.register-link:hover {
+  opacity: 0.75;
+}
+
+/* ============================
+   RESPONSIVE — MÓVIL (hasta 480px)
+   ============================ */
+
+@media (max-width: 480px) {
+  .glass-login-card {
+    width: calc(100% - 32px);
+    padding: 32px 20px;
+    border-radius: 24px;
+  }
+
+  .login-title {
+    font-size: 22px;
+  }
+
+  .login-button {
+    padding: 14px;
+    font-size: 15px;
+  }
+
+  .social-btn {
+    padding: 11px;
+    font-size: 13px;
+  }
+}
+
+/* ============================
+   RESPONSIVE — iPhone SE 1ra gen y Android pequeños (hasta 360px)
+   ============================ */
+
+@media (max-width: 360px) {
+  .glass-login-card {
+    width: calc(100% - 24px);
+    padding: 24px 16px;
+    border-radius: 20px;
+  }
+
+  .icon-circle {
+    width: 58px;
+    height: 58px;
+  }
+
+  .login-title {
+    font-size: 20px;
+  }
+
+  .login-subtitle {
+    font-size: 13px;
+  }
+
+  .input-field {
+    padding: 10px 12px;
+  }
+
+  .input-native {
+    font-size: 15px;
+  }
+}
+
+/* ============================
+   RESPONSIVE — iPhone SE 1ra gen exacto (320px)
+   ============================ */
+
+@media (max-width: 320px) {
+  .glass-login-card {
+    padding: 20px 12px;
+    border-radius: 16px;
+  }
+
+  .login-title {
+    font-size: 18px;
+  }
+
+  .login-button {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .social-btn {
+    padding: 10px 6px;
+    font-size: 12px;
+    gap: 6px;
+  }
+
+  .icon-circle {
+    width: 52px;
+    height: 52px;
+  }
+}
+
+/* ============================
+   LANDSCAPE EN MÓVIL
+   ============================ */
+
+@media (max-height: 600px) and (orientation: landscape) {
+  .login-wrapper {
+    height: auto;
+    min-height: 100vh;
+    padding: 20px 0;
+    align-items: flex-start;
+  }
+
+  .glass-login-card {
+    margin: 0 auto;
+    padding: 24px 28px;
+  }
+
+  .icon-circle {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 12px;
+  }
+
+  .login-title {
+    font-size: 20px;
+  }
+
+  .login-subtitle {
+    margin: 6px 0 16px;
+    font-size: 13px;
+  }
+
+  .separator {
+    margin: 16px 0;
+  }
+
+  .footer-links {
+    margin-top: 16px;
+  }
+}

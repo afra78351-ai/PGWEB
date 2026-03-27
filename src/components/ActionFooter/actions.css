@@ -1,0 +1,175 @@
+/* ============================
+   FOOTER DE ACCIONES
+   ✅ Unificado — única definición en todo el proyecto
+   ============================ */
+
+.action-footer {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 12px;
+}
+
+/* ============================
+   BOTÓN CARRITO — blanco con sombra
+   ============================ */
+
+.btn-white-blue {
+  flex: 0 0 52px;
+  height: 52px;
+  border-radius: var(--radius-md);
+  border: none;
+  background: #ffffff;
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform var(--transition-fast),
+              box-shadow var(--transition-fast),
+              background var(--transition-fast);
+  min-width: 44px;
+  min-height: 44px;
+}
+
+/* ✅ Hover solo en desktop */
+@media (hover: hover) {
+  .btn-white-blue:hover {
+    transform: translateY(-1px) scale(1.03);
+    box-shadow: 0 16px 36px rgba(15, 23, 42, 0.18);
+    background: #f9fafb;
+  }
+}
+
+.btn-white-blue:active {
+  transform: scale(0.94);
+  box-shadow: var(--shadow-sm);
+  background: #f3f4f6;
+}
+
+/* ============================
+   BOTÓN REALIZAR PEDIDO — verde gradiente
+   ============================ */
+
+.btn-green-solid {
+  flex: 1;
+  height: 52px;
+  border-radius: var(--radius-md);
+  border: none;
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  box-shadow: 0 14px 34px rgba(22, 163, 74, 0.4);
+  -webkit-tap-highlight-color: transparent;
+  transition: transform var(--transition-fast),
+              box-shadow var(--transition-fast),
+              filter var(--transition-fast);
+  min-height: 44px;
+  letter-spacing: 0.01em;
+}
+
+/* ✅ Hover solo en desktop */
+@media (hover: hover) {
+  .btn-green-solid:hover {
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 0 18px 40px rgba(22, 163, 74, 0.55);
+    filter: brightness(1.04);
+  }
+}
+
+.btn-green-solid:active {
+  transform: scale(0.96);
+  box-shadow: 0 8px 20px rgba(22, 163, 74, 0.35);
+  filter: brightness(0.97);
+}
+
+/* ============================
+   FOOTER ESTÁTICO — móvil pequeño (hasta 480px)
+   ✅ En iPhone SE y pantallas pequeñas el fixed tapa el contenido.
+   El botón fluye con el contenido, sin flotar sobre nada.
+   ============================ */
+
+@media (max-width: 480px) {
+  .action-footer {
+    position: static;
+    margin-top: 16px;
+    padding: 0;
+    background: transparent;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .btn-green-solid {
+    font-size: 0.9rem;
+  }
+}
+
+/* ============================
+   FOOTER FIJO — tablets y móviles medianos (481px–768px)
+   ✅ Hay espacio vertical suficiente para flotar sin tapar nada
+   ============================ */
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .action-footer {
+    position: fixed;
+    bottom: 24px;
+    left: 16px;
+    right: 16px;
+    padding: 12px;
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
+    padding-left: max(12px, env(safe-area-inset-left));
+    padding-right: max(12px, env(safe-area-inset-right));
+    background: rgba(255, 255, 255, 0.85);
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    gap: 12px;
+  }
+
+  .btn-white-blue { flex: 0 0 52px; }
+  .btn-green-solid { flex: 1; font-size: 0.9rem; }
+}
+
+/* ============================
+   DESKTOP — footer sticky dentro del flujo
+   ============================ */
+
+@media (min-width: 769px) {
+  .action-footer {
+    position: sticky;
+    bottom: 0;
+    border-radius: 14px;
+    margin-top: 8px;
+    background: rgba(255, 255, 255, 0.85);
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    padding: 12px;
+    z-index: 100;
+  }
+}
+
+/* ============================
+   LANDSCAPE EN MÓVIL
+   ============================ */
+
+@media (max-height: 600px) and (orientation: landscape) {
+  .action-footer {
+    padding: 8px 0;
+  }
+
+  .btn-white-blue,
+  .btn-green-solid {
+    height: 44px;
+  }
+}

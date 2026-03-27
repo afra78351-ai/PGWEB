@@ -1,0 +1,111 @@
+/* ============================
+   PREVIEW WRAPPER
+   ✅ Ya definido en tab-shared.css
+   Aquí solo estilos del canvas/imagen
+   ============================ */
+
+.preview-wrapper canvas,
+.preview-wrapper img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  transition: transform var(--transition-base),
+              opacity var(--transition-base),
+              box-shadow var(--transition-base);
+  opacity: 1;
+  display: block;
+}
+
+/* ✅ Hover solo desktop */
+@media (hover: hover) {
+  .preview-wrapper canvas:hover,
+  .preview-wrapper img:hover {
+    transform: scale(1.04);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+}
+
+/* ✅ Feedback táctil — toque en móvil */
+.preview-wrapper canvas:active,
+.preview-wrapper img:active {
+  transform: scale(0.98);
+}
+
+/* ============================
+   ESTADO DE MONTAJE
+   ============================ */
+
+.preview-mounting {
+  opacity: 0;
+  transform: scale(0.97);
+}
+
+.preview-loaded {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.3s ease,
+              transform 0.3s ease;
+}
+
+/* ============================
+   SKELETON — mientras carga el preview
+   ============================ */
+
+.preview-skeleton {
+  width: 100%;
+  aspect-ratio: 1;
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 25%,
+    #e0e0e0 50%,
+    #f0f0f0 75%
+  );
+  background-size: 200% 100%;
+  border-radius: var(--radius-md);
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ============================
+   RESPONSIVE — MÓVIL (hasta 480px)
+   ============================ */
+
+@media (max-width: 480px) {
+  .preview-wrapper {
+    margin: 8px 0;
+  }
+
+  .preview-wrapper canvas,
+  .preview-wrapper img {
+    border-radius: var(--radius-sm);
+  }
+}
+
+/* ============================
+   LANDSCAPE EN MÓVIL
+   ============================ */
+
+@media (max-height: 600px) and (orientation: landscape) {
+  .preview-wrapper canvas,
+  .preview-wrapper img {
+    max-height: 160px;
+    width: auto;
+  }
+}
+
+/* ============================
+   ACCESIBILIDAD
+   ============================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .preview-wrapper canvas,
+  .preview-wrapper img,
+  .preview-skeleton {
+    transition: none;
+    animation: none;
+  }
+}

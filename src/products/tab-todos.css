@@ -1,0 +1,170 @@
+/* ============================
+   ESTADO VACÍO
+   ✅ .tab-empty-state vive en tab-shared.css
+   Aquí solo estilos específicos de TabTodos
+   ============================ */
+
+.tab-todos-card {
+  text-align: center;
+  padding: 40px 28px;
+  width: 100%;
+  max-width: 420px;
+}
+
+/* ============================
+   TÍTULOS Y TEXTO
+   ============================ */
+
+.tab-todos-title {
+  color: var(--brand-blue);
+  margin-bottom: 12px;
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: -0.02em;
+}
+
+.tab-todos-text {
+  color: #6b7280;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* ============================
+   PROMOS
+   ============================ */
+
+.tab-todos-promos {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; /* ✅ se adapta en pantallas pequeñas */
+  gap: 14px;
+}
+
+.tab-todos-promo-box {
+  background: #eef4ff;
+  padding: 14px 18px;
+  border-radius: var(--radius-md);
+  min-width: 130px;
+  border: 1px solid rgba(37, 99, 235, 0.1);
+  transition: transform var(--transition-fast),
+              box-shadow var(--transition-fast);
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ✅ Hover solo desktop */
+@media (hover: hover) {
+  .tab-todos-promo-box:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+}
+
+/* ✅ Feedback táctil */
+.tab-todos-promo-box:active {
+  transform: scale(0.97);
+}
+
+.tab-todos-promo-box p {
+  font-weight: 700;
+  margin: 0 0 4px 0;
+  color: var(--brand-blue);
+  font-size: 0.88rem;
+}
+
+.tab-todos-promo-box span {
+  color: #374151;
+  font-size: 0.85rem;
+}
+
+/* ============================
+   RESPONSIVE — MÓVIL (hasta 480px)
+   ============================ */
+
+@media (max-width: 480px) {
+  .tab-todos-card {
+    padding: 28px 18px;
+  }
+
+  .tab-todos-title {
+    font-size: 1.1rem;
+  }
+
+  .tab-todos-text {
+    font-size: 0.85rem;
+  }
+
+  .tab-todos-promo-box {
+    min-width: 120px;
+    padding: 12px 14px;
+  }
+}
+
+/* ============================
+   RESPONSIVE — iPhone SE / Android pequeño (hasta 360px)
+   ============================ */
+
+@media (max-width: 360px) {
+  .tab-todos-card {
+    padding: 22px 14px;
+  }
+
+  .tab-todos-title {
+    font-size: 1rem;
+  }
+
+  .tab-todos-promos {
+    gap: 10px;
+  }
+
+  .tab-todos-promo-box {
+    min-width: 100px;
+    padding: 10px 12px;
+  }
+}
+
+/* ============================
+   RESPONSIVE — iPhone SE 1ra gen exacto (320px)
+   ============================ */
+
+@media (max-width: 320px) {
+  .tab-todos-card {
+    padding: 18px 10px;
+  }
+
+  .tab-todos-promo-box {
+    min-width: 90px;
+    padding: 8px 10px;
+  }
+}
+
+/* ============================
+   LANDSCAPE EN MÓVIL
+   ============================ */
+
+@media (max-height: 600px) and (orientation: landscape) {
+  .tab-todos-card {
+    padding: 20px 18px;
+  }
+
+  .tab-todos-title {
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+
+  .tab-todos-promos {
+    margin-top: 12px;
+    gap: 10px;
+  }
+}
+
+/* ============================
+   ACCESIBILIDAD
+   ============================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .tab-todos-promo-box {
+    transition: none;
+  }
+}

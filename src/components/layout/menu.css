@@ -1,0 +1,259 @@
+/* ============================
+   OVERLAY DEL MENÚ
+   ============================ */
+
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: flex-start;
+  z-index: 2000;
+  animation: overlayFadeIn 0.25s ease-out;
+  overscroll-behavior: contain;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.menu-overlay.closing {
+  animation: overlayFadeOut 0.24s ease-out forwards;
+}
+
+/* ============================
+   DRAWER (PANEL LATERAL)
+   ============================ */
+
+.menu-drawer {
+  width: 270px;
+  height: 100%;
+  background: #ffffff;
+  box-shadow: 6px 0 30px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  animation: drawerSlideIn 0.28s cubic-bezier(0.32, 0.72, 0, 1);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
+  padding-left: max(0px, env(safe-area-inset-left));
+}
+
+.menu-drawer.closing {
+  animation: drawerSlideOut 0.24s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+}
+
+/* ============================
+   HEADER CON AVATAR
+   ============================ */
+
+.menu-drawer-header {
+  padding: 20px 18px 16px;
+  padding-top: max(20px, env(safe-area-inset-top));
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #f0f7ff, #ffffff);
+  flex-shrink: 0; /* ✅ no se comprime con el scroll */
+}
+
+.menu-drawer-title {
+  color: var(--brand-blue);
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* ============================
+   ITEMS DEL MENÚ
+   ============================ */
+
+.menu-item {
+  padding: 12px 18px;
+  font-size: 0.92rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  color: #1f2937;
+  font-weight: 500;
+  transition: background var(--transition-fast),
+              transform var(--transition-fast);
+  -webkit-tap-highlight-color: transparent;
+  min-height: 44px;
+}
+
+@media (hover: hover) {
+  .menu-item:hover {
+    background: #f3f4f6;
+  }
+
+  .menu-item:hover .menu-item-icon {
+    color: var(--brand-blue);
+  }
+}
+
+.menu-item:active {
+  background: #e5e7eb;
+  transform: scale(0.99);
+}
+
+.menu-item:active .menu-item-icon {
+  color: var(--brand-blue);
+}
+
+/* ============================
+   ÍCONOS Y FLECHAS
+   ============================ */
+
+.menu-item-icon {
+  color: #9ca3af;
+  flex-shrink: 0;
+  transition: color var(--transition-fast);
+}
+
+.menu-item-arrow {
+  color: #d1d5db;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* ============================
+   TEXTO DEL ITEM — ocupa espacio */
+
+.menu-item span {
+  flex: 1;
+}
+
+/* ============================
+   DIVISOR
+   ============================ */
+
+.menu-divider {
+  height: 1px;
+  background: #f3f4f6;
+  margin: 2px 0;
+  flex-shrink: 0;
+}
+
+/* ============================
+   CERRAR SESIÓN
+   ============================ */
+
+.logout-item {
+  color: #dc2626;
+  font-weight: 600;
+  margin-top: auto;
+}
+
+.logout-item .menu-item-icon {
+  color: #dc2626;
+}
+
+@media (hover: hover) {
+  .logout-item:hover {
+    background: #fef2f2;
+  }
+
+  .logout-item:hover .menu-item-icon {
+    color: #dc2626;
+  }
+}
+
+.logout-item:active {
+  background: #fee2e2;
+}
+
+/* ============================
+   RESPONSIVE — MÓVIL (hasta 480px)
+   ============================ */
+
+@media (max-width: 480px) {
+  .menu-drawer {
+    width: 80vw;
+    max-width: 300px;
+  }
+
+  .menu-item {
+    font-size: 0.88rem;
+    padding: 11px 16px;
+    gap: 10px;
+  }
+
+  .menu-drawer-header {
+    padding: 16px 16px 14px;
+    padding-top: max(16px, env(safe-area-inset-top));
+  }
+}
+
+/* ============================
+   RESPONSIVE — iPhone SE / Android pequeño (hasta 360px)
+   ============================ */
+
+@media (max-width: 360px) {
+  .menu-drawer {
+    width: 85vw;
+  }
+
+  .menu-item {
+    font-size: 0.82rem;
+    padding: 10px 14px;
+    gap: 8px;
+    min-height: 40px;
+  }
+
+  .menu-drawer-header {
+    padding: 14px 14px 12px;
+    padding-top: max(14px, env(safe-area-inset-top));
+    gap: 10px;
+  }
+}
+
+/* ============================
+   RESPONSIVE — iPhone SE 1ra gen exacto (320px)
+   ============================ */
+
+@media (max-width: 320px) {
+  .menu-drawer {
+    width: 88vw;
+  }
+
+  .menu-item {
+    font-size: 0.78rem;
+    min-height: 38px;
+  }
+}
+
+/* ============================
+   LANDSCAPE EN MÓVIL
+   ============================ */
+
+@media (max-height: 600px) and (orientation: landscape) {
+  .menu-drawer {
+    width: 55vw;
+    max-width: 280px;
+  }
+
+  .menu-drawer-header {
+    padding: 10px 16px;
+  }
+
+  .menu-item {
+    padding: 8px 16px;
+    min-height: 38px;
+    font-size: 0.84rem;
+  }
+}
+
+/* ============================
+   ACCESIBILIDAD
+   ============================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-overlay,
+  .menu-drawer {
+    animation: none;
+    transition: none;
+  }
+}

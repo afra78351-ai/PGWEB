@@ -1,0 +1,174 @@
+/* ============================
+   BASE CARD
+   ============================ */
+
+.card {
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  width: 100%;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ============================
+   TAB CARD
+   ============================ */
+
+.tab-card {
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  width: 100%;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+}
+
+/* ============================
+   HOME CARD
+   ============================ */
+
+.home-card {
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  min-height: 260px;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* ============================
+   FACTURA SCROLLEABLE
+   ============================ */
+
+.factura-container {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  scroll-behavior: smooth;
+  margin-top: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+.factura-container::-webkit-scrollbar { width: 4px; }
+.factura-container::-webkit-scrollbar-track { background: transparent; }
+.factura-container::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 99px;
+}
+
+/* ============================
+   INPUTS Y SELECTS
+   ============================ */
+
+.custom-select,
+.custom-input {
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid #e5e7eb;
+  width: 100%;
+  /* ✅ Bug 3 fix: mínimo 16px evita zoom automático en iOS Safari */
+  font-size: 1rem;
+  background: #f9fafb;
+  color: #1f2937;
+  transition: border var(--transition-fast),
+              box-shadow var(--transition-fast),
+              background var(--transition-fast);
+  -webkit-appearance: none;
+  appearance: none;
+  min-height: 44px;
+}
+
+.custom-select:focus,
+.custom-input:focus {
+  outline: none;
+  border-color: var(--brand-blue);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+  background: #ffffff;
+}
+
+.custom-input:-webkit-autofill,
+.custom-input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px #f9fafb inset !important;
+  -webkit-text-fill-color: #1f2937 !important;
+}
+
+/* ============================
+   NOTA: .preview-wrapper vive en tab-shared.css
+   Eliminada de aqui para evitar conflicto con align-items
+   ============================ */
+
+/* ============================
+   RESPONSIVE TABLET (900px)
+   ============================ */
+
+@media (max-width: 900px) {
+  .tab-card { height: auto; }
+  .factura-container { max-height: 220px; }
+}
+
+/* ============================
+   RESPONSIVE MOVIL (480px)
+   ============================ */
+
+@media (max-width: 480px) {
+  .tab-card { padding: 16px; border-radius: 22px; }
+  .home-card { padding: 18px; border-radius: 22px; }
+  .factura-container { max-height: 200px; }
+  .custom-select,
+  .custom-input {
+    /* font-size eliminado — ya es 1rem en la regla base */
+    padding: 10px;
+  }
+}
+
+/* ============================
+   RESPONSIVE iPhone SE (360px)
+   ============================ */
+
+@media (max-width: 360px) {
+  .tab-card, .home-card { padding: 14px; border-radius: 18px; }
+  .factura-container { max-height: 180px; }
+}
+
+/* ============================
+   RESPONSIVE iPhone SE 1ra gen (320px)
+   ============================ */
+
+@media (max-width: 320px) {
+  .tab-card, .home-card { padding: 12px; border-radius: 16px; }
+  .factura-container { max-height: 160px; }
+}
+
+/* ============================
+   LANDSCAPE EN MOVIL
+   ============================ */
+
+@media (max-height: 600px) and (orientation: landscape) {
+  .tab-card { padding: 12px; }
+  .factura-container { max-height: 160px; }
+  .home-card { min-height: auto; padding: 14px; }
+}

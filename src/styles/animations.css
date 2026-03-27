@@ -1,0 +1,213 @@
+/* ============================
+   FADE IN SUAVE — tab content y elementos generales
+   ✅ Unificado — elimina tabFadeIn duplicado de tabs.css
+   ============================ */
+
+@keyframes fadeInSoft {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-soft {
+  animation: fadeInSoft 0.25s ease-out both;
+}
+
+/* ============================
+   FADE IN ESCALA — cards y modales
+   Efecto entrada tipo iOS
+   ============================ */
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.fade-in-scale {
+  animation: fadeInScale 0.28s cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+
+/* ============================
+   DRAWER — entrada lateral izquierda
+   ============================ */
+
+@keyframes drawerSlideIn {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* ============================
+   DRAWER — salida lateral izquierda
+   ✅ Antes no existía — el drawer cerraba abruptamente
+   ============================ */
+
+@keyframes drawerSlideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+/* ============================
+   OVERLAY — entrada
+   ============================ */
+
+@keyframes overlayFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ============================
+   OVERLAY — salida
+   ✅ Antes no existía
+   ============================ */
+
+@keyframes overlayFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* ============================
+   SHAKE — error de login y formularios
+   ============================ */
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-10px); }
+  40%       { transform: translateX(10px); }
+  60%       { transform: translateX(-8px); }
+  80%       { transform: translateX(8px); }
+}
+
+.shake {
+  animation: shake 0.4s ease-out both;
+}
+
+/* ============================
+   PULSE — botones de acción importantes
+   ============================ */
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(37, 99, 235, 0);
+  }
+}
+
+.pulse {
+  animation: pulse 1.8s ease-in-out infinite;
+}
+
+/* ============================
+   BOUNCE IN — notificaciones y badges
+   ============================ */
+
+@keyframes bounceIn {
+  0%   { transform: scale(0.3); opacity: 0; }
+  50%  { transform: scale(1.08); opacity: 1; }
+  75%  { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+.bounce-in {
+  animation: bounceIn 0.38s cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+
+/* ============================
+   SLIDE UP — modales y sheets
+   Estilo iOS bottom sheet
+   ============================ */
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+.slide-up {
+  animation: slideUp 0.32s cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+
+.slide-down {
+  animation: slideDown 0.28s cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+
+/* ============================
+   SPINNER — estados de carga
+   ============================ */
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.spinner {
+  width: 22px;
+  height: 22px;
+  border: 2.5px solid rgba(37, 99, 235, 0.2);
+  border-top-color: var(--brand-blue);
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+}
+
+/* ============================
+   RESPETA PREFERENCIAS DE ACCESIBILIDAD
+   ✅ Si el usuario desactivó animaciones en su sistema
+   ============================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

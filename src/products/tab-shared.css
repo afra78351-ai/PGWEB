@@ -1,0 +1,63 @@
+/* ============================
+   NOTA: .tab-column y .tab-card
+   viven en layout.css y cards.css
+   Este archivo solo contiene estilos
+   compartidos entre tabs
+   ============================ */
+
+/* ============================
+   PREVIEW WRAPPER
+   Unica definicion — eliminada de cards.css
+   El centrado vertical (align-items:center) vive aqui
+   ============================ */
+
+.preview-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 12px 0;
+  width: 100%;
+}
+
+/* ============================
+   ESTADO VACIO — TabTodos
+   ============================ */
+
+.tab-empty-state {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  padding: 8px 0;
+}
+
+/* ============================
+   RESPONSIVE TABLET (900px)
+   ============================ */
+
+@media (max-width: 900px) {
+  .preview-wrapper {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ============================
+   RESPONSIVE MOVIL (480px)
+   ============================ */
+
+@media (max-width: 480px) {
+  .preview-wrapper {
+    margin: 8px 0;
+  }
+}
+
+/* ============================
+   LANDSCAPE EN MOVIL
+   ============================ */
+
+@media (max-height: 600px) and (orientation: landscape) {
+  .preview-wrapper {
+    margin: 6px 0;
+  }
+}

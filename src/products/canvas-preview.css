@@ -1,0 +1,114 @@
+/* ============================
+   CONTENEDOR PRINCIPAL DEL CANVAS
+   padding reducido 28px -> 12px: eliminaba espacio vacio excesivo en movil
+   background eliminado: el card padre ya es blanco, era redundante
+   ============================ */
+
+.canvas-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 8px;
+  padding: 12px 0;
+  border-radius: 18px;
+}
+
+/* ============================
+   PRECIO ENCIMA DEL CANVAS
+   ============================ */
+
+.canvas-price-tag {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #111827;
+}
+
+.canvas-price-tag span {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #6b7280;
+}
+
+/* ============================
+   CONTENEDOR THREE.JS
+   ============================ */
+
+.canvas-threejs {
+  width: 100%;
+  height: clamp(200px, 35vw, 340px);
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  cursor: grab;
+  touch-action: none;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+.canvas-threejs:active {
+  cursor: grabbing;
+}
+
+/* ============================
+   FIX ANDROID WEBVIEW
+   Algunos Android ignoran overflow:hidden del padre en canvas WebGL.
+   Aplicar border-radius directo al canvas fuerza el recorte
+   en todos los motores de renderizado.
+   ============================ */
+
+.canvas-threejs canvas {
+  border-radius: 16px;
+}
+
+/* ============================
+   HINT DE INTERACCION
+   ============================ */
+
+.canvas-hint {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ============================
+   RESPONSIVE MOVIL (480px)
+   ============================ */
+
+@media (max-width: 480px) {
+  .canvas-wrapper {
+    padding: 8px 0;
+    gap: 6px;
+  }
+  .canvas-price-tag { font-size: 1.4rem; }
+  .canvas-hint { font-size: 0.7rem; }
+}
+
+/* ============================
+   RESPONSIVE iPhone SE (360px)
+   ============================ */
+
+@media (max-width: 360px) {
+  .canvas-wrapper {
+    padding: 6px 0;
+    gap: 4px;
+  }
+  .canvas-price-tag { font-size: 1.2rem; }
+  .canvas-hint { font-size: 0.65rem; }
+}
+
+/* ============================
+   LANDSCAPE EN MOVIL
+   ============================ */
+
+@media (max-height: 600px) and (orientation: landscape) {
+  .canvas-wrapper {
+    padding: 6px 0;
+    gap: 4px;
+  }
+  .canvas-threejs {
+    height: clamp(140px, 28vw, 200px);
+  }
+}

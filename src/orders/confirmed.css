@@ -1,0 +1,146 @@
+/* ============================
+   PANTALLA CONFIRMED
+   ============================ */
+
+.confirmed-screen {
+  min-height: 100dvh;
+  background: radial-gradient(circle at 50% 40%, #dcfce7 0%, #f0fdf4 40%, #f5f7fb 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  padding: 24px;
+}
+
+/* ============================
+   CONFETTI
+   ============================ */
+
+.confirmed-confetti {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.confirmed-particle {
+  position: absolute;
+  top: 0;
+  border-radius: 2px;
+}
+
+/* ============================
+   CONTENIDO CENTRAL
+   ============================ */
+
+.confirmed-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  z-index: 1;
+  text-align: center;
+  max-width: 300px;
+  width: 100%;
+}
+
+/* ============================
+   CÍRCULO CON CHECK SVG
+   ============================ */
+
+.confirmed-circle {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 8px 32px rgba(22, 163, 74, 0.2),
+    0 2px 8px rgba(0, 0, 0, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.confirmed-svg {
+  width: 52px;
+  height: 52px;
+}
+
+/* ============================
+   TEXTOS
+   ============================ */
+
+.confirmed-title {
+  font-size: clamp(1.3rem, 6vw, 1.6rem);
+  font-weight: 900;
+  color: #15803d;
+  letter-spacing: -0.03em;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.confirmed-sub {
+  font-size: 0.88rem;
+  color: #4b5563;
+  margin: 0;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+/* ============================
+   BARRA DE PROGRESO AUTOMÁTICA
+   ============================ */
+
+.confirmed-progress-wrap {
+  width: 100%;
+  height: 4px;
+  background: rgba(22, 163, 74, 0.15);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.confirmed-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #16a34a, #22c55e);
+  border-radius: 2px;
+}
+
+.confirmed-redirect-hint {
+  font-size: 0.72rem;
+  color: #9ca3af;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* ============================
+   RESPONSIVE — 320px
+   ============================ */
+
+@media (max-width: 320px) {
+  .confirmed-circle {
+    width: 76px;
+    height: 76px;
+  }
+
+  .confirmed-svg {
+    width: 44px;
+    height: 44px;
+  }
+
+  .confirmed-title {
+    font-size: 1.2rem;
+  }
+}
+
+/* ============================
+   ACCESIBILIDAD
+   ============================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .confirmed-particle {
+    display: none;
+  }
+}

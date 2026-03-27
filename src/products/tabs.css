@@ -1,0 +1,159 @@
+/* ============================
+   CONTENEDOR DE TABS (PILLS)
+   ============================ */
+
+.tabs-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  width: 100%;
+  padding: 0 16px;
+  /* ✅ Sin overflow-x — eliminamos la línea fantasma */
+  overflow: visible;
+  /* ✅ Padding seguro para notch */
+  padding-left: max(16px, env(safe-area-inset-left));
+  padding-right: max(16px, env(safe-area-inset-right));
+}
+
+/* ============================
+   BOTONES (PILLS)
+   ============================ */
+
+.tab-btn {
+  padding: 9px 20px;
+  border-radius: var(--radius-full);
+  border: none;
+  background: rgba(255, 255, 255, 0.9);
+  color: #6b7280;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-base),
+              box-shadow var(--transition-base),
+              background var(--transition-base),
+              color var(--transition-base);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  font-size: 0.85rem;
+  white-space: nowrap;
+  /* ✅ Área táctil mínima Apple y Google */
+  min-height: 44px;
+  /* ✅ Evita flash azul al tocar en Android */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ✅ Hover solo en desktop — no interfiere con táctil */
+@media (hover: hover) {
+  .tab-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 26px rgba(15, 23, 42, 0.1);
+    background: #ffffff;
+  }
+}
+
+/* ✅ Feedback táctil iOS y Android */
+.tab-btn:active {
+  transform: scale(0.96);
+  box-shadow: var(--shadow-sm);
+}
+
+.tab-btn.active {
+  background: var(--brand-blue);
+  color: #ffffff;
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 14px 30px var(--brand-shadow);
+}
+
+.tab-btn.active:active {
+  transform: scale(0.97);
+}
+
+/* ============================
+   CONTENIDO DEL TAB
+   ============================ */
+
+.tab-content {
+  width: 100%;
+  /* ✅ En móvil centrado con max-width, en desktop sin límite */
+  margin: 0 auto;
+  padding: 12px 16px 0;
+  animation: fadeInSoft 0.22s ease-out; /* ✅ usa el keyframe unificado de animations.css */
+}
+
+/* ============================
+   RESPONSIVE — TABLET (hasta 900px)
+   ============================ */
+
+@media (max-width: 900px) {
+  .tab-content {
+    max-width: 480px; /* ✅ solo en móvil/tablet */
+  }
+}
+
+/* ============================
+   RESPONSIVE — MÓVIL (hasta 480px)
+   ============================ */
+
+@media (max-width: 480px) {
+  .tabs-container {
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .tab-btn {
+    padding: 8px 16px;
+    font-size: 0.8rem;
+  }
+
+  .tab-content {
+    padding: 10px 12px 0;
+  }
+}
+
+/* ============================
+   RESPONSIVE — iPhone SE / Android pequeño (hasta 360px)
+   ============================ */
+
+@media (max-width: 360px) {
+  .tabs-container {
+    gap: 6px;
+    padding: 0 10px;
+  }
+
+  .tab-btn {
+    padding: 7px 13px;
+    font-size: 0.78rem;
+  }
+}
+
+/* ============================
+   RESPONSIVE — iPhone SE 1ra gen exacto (320px)
+   ============================ */
+
+@media (max-width: 320px) {
+  .tab-btn {
+    padding: 7px 11px;
+    font-size: 0.75rem;
+  }
+}
+
+/* ============================
+   LANDSCAPE EN MÓVIL
+   ============================ */
+
+@media (max-height: 600px) and (orientation: landscape) {
+  .tabs-container {
+    margin-bottom: 8px;
+  }
+
+  .tab-btn {
+    min-height: 38px;
+    padding: 6px 16px;
+  }
+
+  .tab-content {
+    padding-top: 8px;
+  }
+}
