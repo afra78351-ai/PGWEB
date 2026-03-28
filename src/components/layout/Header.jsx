@@ -1,8 +1,29 @@
-const Header = () => {
+import React from "react";
+import "../../styles/header.css";
+
+const Header = ({ onOpenMenu, tasa }) => {
   return (
-    <header style={styles.header}>
-      <h1 style={styles.title}>La Tienda Foránea</h1>
-      <span style={styles.rate}>USD • Tasa BCV: 390.63 Bs</span>
+    <header className="top-bar" style={styles.header}>
+      <button
+        className="burger-btn"
+        onClick={onOpenMenu}
+        aria-label="Abrir menú"
+      >
+        <img
+          src="/src/assets/icons/lista.png"
+          alt="Menu"
+          className="burger-icon"
+        />
+      </button>
+
+      <h1 className="header-title" style={styles.title}>
+        La Tienda Foránea
+      </h1>
+
+      <div className="header-rate" style={styles.rate}>
+        <span>Tasa BCV</span>
+        <b>{tasa ? `${tasa.toFixed(2)} Bs` : "USD • ---"}</b>
+      </div>
     </header>
   );
 };

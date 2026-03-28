@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { User, Lock, ArrowRight, Palette } from 'lucide-react';
+import { useAuth } from './useAuth'; 
+import { supabase } from '../../api/supabase'; // <--- 1. Importamos supabase (ajusta la ruta si es necesario)
 import "./login.css";
 
 const Login = () => {
-  const [user, setUser] = useState('');
+  const [email, setEmail] = useState(''); 
   const [pass, setPass] = useState('');
+  const { login } = useAuth(); 
   const navigate = useNavigate();
   const controls = useAnimation();
 
@@ -14,18 +17,32 @@ const Login = () => {
     controls.start({ opacity: 1, scale: 1 });
   }, []);
 
+  // <--- 2. Nueva función para el login con Google
+  const handleGoogleLogin = async () => {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        // Esto redirige al usuario de vuelta a tu app tras loguearse
+        redirectTo: window.location.origin 
+      }
+    });
+    
+    if (error) {
+      alert("Error con Google: " + error.message);
+    }
+  };
+
   const handleLogin = async (e) => {
     e.preventDefault();
-
-    if (user.toLowerCase() === 'admin' && pass === '1234') {
-      localStorage.setItem('userAuth', 'true');
-      navigate('/home');
-    } else {
+    try {
+      await login(email, pass);
+      navigate('/'); 
+    } catch (error) {
       await controls.start({
         x: [-10, 10, -10, 10, 0],
         transition: { duration: 0.4 }
       });
-      alert("Credenciales incorrectas. Intenta con admin / 1234");
+      alert("Error al iniciar sesión: " + error.message);
     }
   };
 
@@ -51,10 +68,10 @@ const Login = () => {
           <div className="input-field">
             <User size={20} className="icon" />
             <input
-              type="text"
-              placeholder="Usuario"
-              value={user}
-              onChange={(e) => setUser(e.target.value)}
+              type="email" 
+              placeholder="Correo electrónico"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="input-native"
               required
             />
@@ -106,7 +123,7 @@ const Login = () => {
             <motion.button
               type="button"
               whileTap={{ scale: 0.95 }}
-              onClick={() => alert("Próximamente: Google Account")}
+              onClick={handleGoogleLogin} // <--- 3. Cambiado el alert por la función real
               className="social-btn google"
             >
               <svg viewBox="0 0 488 512" width="20">
